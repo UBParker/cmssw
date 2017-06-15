@@ -12,13 +12,9 @@ b2gSingleJetHLTValidation = cms.EDAnalyzer('B2GHadronicHLTValidation',
         # Trigger
         sTrigger     = cms.untracked.string("TriggerResults"),
         vsPaths      = cms.untracked.vstring([  'HLT_AK8PFJet360_TrimMass30',
-                                                'HLT_AK8PFHT750_TrimMass50',
                                                 'HLT_AK8PFJet380_TrimMass30',
-                                                'HLT_AK8PFHT800_TrimMass50',
                                                 'HLT_AK8PFJet400_TrimMass30',
-                                                'HLT_AK8PFHT850_TrimMass50',
-                                                'HLT_AK8PFJet420_TrimMass30',
-                                                'HLT_AK8PFHT900_TrimMass50'
+                                                'HLT_AK8PFJet420_TrimMass30'
                                                                   ]),
 )
 
