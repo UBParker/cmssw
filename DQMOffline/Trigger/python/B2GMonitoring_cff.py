@@ -76,7 +76,7 @@ b2gMonitorHLT = cms.Sequence(
     AK8PFHT800_TrimMass50_HTmonitoring + 
     AK8PFHT850_TrimMass50_HTmonitoring + 
     AK8PFHT900_TrimMass50_HTmonitoring# +
-    #AK8PFJet380_TrimMass30 + 
-    #AK8PFJet400_TrimMass30 + 
-    #AK8PFJet420_TrimMass30
+    #AK8PFJet380_TrimMass30_PromptMonitoring + 
+    #AK8PFJet400_TrimMass30_PromptMonitoring + 
+    #AK8PFJet420_TrimMass30_PromptMonitoring
 )
