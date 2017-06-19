@@ -46,7 +46,7 @@ tagAndProbeConfigEle50CaloIdVTGsfTrkIdT = cms.PSet(
         hltPaths = cms.vstring("HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165_v*")
         ),
     #it is intended that these are the filters of the triggers listed for sampleTrigRequirements
-    tagFilters = cms.vstring("hltEle50CaloIdVTGsfTrkIdTGsfDphiFilter"),
+    tagFilters = cms.vstring("hltEle50CaloIdVTGsfTrkIdTCentralPFJet165EleCleaned"),
     tagFiltersORed = cms.bool(True),
     tagRangeCuts = cms.VPSet(ecalBarrelAndEndcapEtaCut),
     probeFilters = cms.vstring(),
@@ -106,13 +106,6 @@ egammaStdHistConfigs = cms.VPSet(
     )
 
 egammaStdFiltersToMonitor= cms.VPSet(
-    cms.PSet(
-        folderName = cms.string("HLT/EGTagAndProbeEffs/HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165"),
-        rangeCuts = cms.VPSet(etRangeCut.clone(allowedRanges=cms.vstring("55:99999")),),
-        filterName = cms.string("hltEle50CaloIdVTGsfTrkIdTGsfDphiFilter"),
-        histTitle = cms.string(""),
-        tagExtraFilter = cms.string(""),
-        ),
     cms.PSet(
         folderName = cms.string("HLT/EGTagAndProbeEffs/HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165"),
         rangeCuts = cms.VPSet(etRangeCut.clone(allowedRanges=cms.vstring("55:99999")),),
