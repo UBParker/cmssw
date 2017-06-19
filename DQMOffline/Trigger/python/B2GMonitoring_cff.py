@@ -6,7 +6,6 @@ from DQMOffline.Trigger.B2GTnPMonitor_cfi import B2GegmGsfElectronIDsForDQM,B2Ge
 #from DQMOffline.Trigger.JetMETMonitor_cfi import hltJetMETmonitoring
 from DQMOffline.Trigger.HTMonitor_cfi import hltHTmonitoring
 
-
 # B2G triggers:
 #HLT_AK8PFHT750_TrimMass50_v*
 #HLT_AK8PFJet380_TrimMass30_v*
@@ -44,19 +43,6 @@ AK8PFHT900_TrimMass50_HTmonitoring.jets = cms.InputTag("ak8PFJetsCHS")
 AK8PFHT900_TrimMass50_HTmonitoring.jetSelection      = cms.string("pt > 0 && eta < 2.5")
 AK8PFHT900_TrimMass50_HTmonitoring.jetSelection_HT = cms.string("pt > 200 && eta < 2.5")
 
-
-B2GMonitor_elplusJet_HLT = cms.Sequence(
-    B2GegmGsfElectronIDsForDQM*
-    B2GegHLTDQMOfflineTnPSource
-)
-
-# HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165                                                                                                                                                 
-Ele50_CaloIdVT_GsfTrkIdT_PFJet165_PromptMonitoring = hltJetMETmonitoring.clone()
-Ele50_CaloIdVT_GsfTrkIdT_PFJet165_PromptMonitoring.FolderName = cms.string('HLT/B2GMonitor/Ele50_CaloIdVT_GsfTrkIdT_PFJet165')
-Ele50_CaloIdVT_GsfTrkIdT_PFJet165_PromptMonitoring.ptcut = cms.double(160)
-AK8PFJet360_TrimMass30_Promptonitoring.numGenericTriggerEventPSet.hltPaths = cms.vstring("HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165_v*")
-Ele50_CaloIdVT_GsfTrkIdT_PFJet165_PromptMonitoring.pfjets      = cms.InputTag("ak8PFJetsCHS")
-Ele50_CaloIdVT_GsfTrkIdT_PFJet165_PromptMonitoring.jetSelection      = cms.string("pt > 0 && eta < 2.5")
 
 # THE FOLLOWING TO BE ADDED WHEN PR 19178 is merged:
 '''               
@@ -96,6 +82,9 @@ b2gMonitorHLT = cms.Sequence(
     #AK8PFJet420_TrimMass30
 )
 
-
+B2GMonitor_elplusJet_HLT = cms.Sequence(
+    B2GegmGsfElectronIDsForDQM*
+    B2GegHLTDQMOfflineTnPSource
+)
 
 
