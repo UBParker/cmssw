@@ -107,7 +107,7 @@ egammaStdHistConfigs = cms.VPSet(
 
 egammaStdFiltersToMonitor= cms.VPSet(
     cms.PSet(
-        folderName = cms.string("HLT/EGTagAndProbeEffs/HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165"),
+        folderName = cms.string("HLT/B2GMonitor/HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165"),
         rangeCuts = cms.VPSet(etRangeCut.clone(allowedRanges=cms.vstring("55:99999")),),
         filterName = cms.string("hltEle50CaloIdVTGsfTrkIdTCentralPFJet165EleCleaned"),
         histTitle = cms.string(""),
