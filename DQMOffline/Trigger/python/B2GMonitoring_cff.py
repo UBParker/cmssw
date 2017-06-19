@@ -1,9 +1,6 @@
 import FWCore.ParameterSet.Config as cms
-# Uncomment after testing:
-#from DQMOffline.Trigger.B2GTnPMonitor_cfi import 
+# Uncomment after testing: 
 from DQMOffline.Trigger.B2GTnPMonitor_cfi import B2GegmGsfElectronIDsForDQM,B2GegHLTDQMOfflineTnPSource
-# OR COULD DO
-#from DQMOffline.Trigger.HLTEGTnPMonitor_cfi import egmGsfElectronIDsForDQM
 
 # THIS WILL BE UPDATED WHEN 19178 IS MERGED:
 #from DQMOffline.Trigger.JetMETMonitor_cfi import hltJetMETmonitoring
