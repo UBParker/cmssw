@@ -119,7 +119,7 @@ egammaStdFiltersToMonitor= cms.VPSet(
   
  
 
-egHLTDQMOfflineTnPSource = cms.EDAnalyzer("HLTEleTagAndProbeOfflineSource",
+B2GegHLTDQMOfflineTnPSource = cms.EDAnalyzer("HLTEleTagAndProbeOfflineSource",
                                           tagAndProbeCollections = cms.VPSet(
         cms.PSet( 
             tagAndProbeConfigEle50CaloIdVTGsfTrkIdT,
@@ -134,9 +134,9 @@ egHLTDQMOfflineTnPSource = cms.EDAnalyzer("HLTEleTagAndProbeOfflineSource",
 
 from RecoEgamma.ElectronIdentification.egmGsfElectronIDs_cff import egmGsfElectronIDs
 
-egmGsfElectronIDsForDQM = egmGsfElectronIDs.clone()
-egmGsfElectronIDsForDQM.physicsObjectsIDs = cms.VPSet()
-egmGsfElectronIDsForDQM.physicsObjectSrc == cms.InputTag('gedGsfElectrons')
+B2GegmGsfElectronIDsForDQM = egmGsfElectronIDs.clone()
+B2GegmGsfElectronIDsForDQM.physicsObjectsIDs = cms.VPSet()
+B2GegmGsfElectronIDsForDQM.physicsObjectSrc == cms.InputTag('gedGsfElectrons')
 #note: be careful here to when selecting new ids that the vid tools doesnt do extra setup for them
 #for example the HEEP cuts need an extra producer which vid tools automatically handles
 from PhysicsTools.SelectorUtils.tools.vid_id_tools import setupVIDSelection
@@ -146,4 +146,4 @@ for id_module_name in my_id_modules:
     for name in dir(idmod):
         item = getattr(idmod,name)
         if hasattr(item,'idName') and hasattr(item,'cutFlow'):
-            setupVIDSelection(egmGsfElectronIDsForDQM,item)
+            setupVIDSelection(B2GegmGsfElectronIDsForDQM,item)
