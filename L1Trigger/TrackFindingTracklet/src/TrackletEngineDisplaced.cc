@@ -120,7 +120,7 @@ void TrackletEngineDisplaced::execute() {
         edm::LogVerbatim("Tracklet") << "In " << getName() << " have first stub";
       }
 
-      if ((layer1_ == 3 && layer2_ == 4) || (layer1_ == 5 && layer2_ == 6)) {
+      if ( (layer1_ == 2 && layer2_ == 3) || (layer1_ == 3 && layer2_ == 4) || (layer1_ == 5 && layer2_ == 6)    ) {
         int lookupbits = firstvmstub.vmbits().value() & 1023;
         int zdiffmax = (lookupbits >> 7);
         int newbin = (lookupbits & 127);
@@ -139,92 +139,17 @@ void TrackletEngineDisplaced::execute() {
         for (int ibin = start; ibin <= last; ibin++) {
           for (unsigned int j = 0; j < secondvmstubs_->nVMStubsBinned(ibin); j++) {
             if (settings_.debugTracklet()) {
-              edm::LogVerbatim("Tracklet") << "In " << getName() << " have second stub(1) " << ibin << " " << j;
+              if ((layer1_ == 3 && layer2_ == 4) || (layer1_ == 5 && layer2_ == 6)) {
+                edm::LogVerbatim("Tracklet") << "In " << getName() << " have second stub(1) " << ibin << " " << j;
+              }
+              else {
+                edm::LogVerbatim("Tracklet") << "In " << getName() << " have second stub(2) ";
+              }
             }
 
             if (countall >= settings_.maxStep("TE"))
               break;
             countall++;
-            const VMStubTE& secondvmstub = secondvmstubs_->getVMStubTEBinned(ibin, j);
-
-            int zbin = (secondvmstub.vmbits().value() & 7);
-            if (start != ibin)
-              zbin += 8;
-            if (zbin < zbinfirst || zbin - zbinfirst > zdiffmax) {
-              if (settings_.debugTracklet()) {
-                edm::LogVerbatim("Tracklet") << "Stubpair rejected because of wrong zbin";
-              }
-              continue;
-            }
-
-            assert(firstphibits_ != -1);
-            assert(secondphibits_ != -1);
-
-            FPGAWord iphifirstbin = firstvmstub.finephi();
-            FPGAWord iphisecondbin = secondvmstub.finephi();
-
-            unsigned int index = (iphifirstbin.value() << secondphibits_) + iphisecondbin.value();
-
-            FPGAWord firstbend = firstvmstub.bend();
-            FPGAWord secondbend = secondvmstub.bend();
-
-            index = (index << firstbend.nbits()) + firstbend.value();
-            index = (index << secondbend.nbits()) + secondbend.value();
-
-            if ((settings_.enableTripletTables() && !settings_.writeTripletTables()) &&
-                (index >= table_.size() || table_.at(index).empty())) {
-              if (settings_.debugTracklet()) {
-                edm::LogVerbatim("Tracklet") << "Stub pair rejected because of stub pt cut bends : "
-                                             << benddecode(firstvmstub.bend().value(), firstvmstub.isPSmodule()) << " "
-                                             << benddecode(secondvmstub.bend().value(), secondvmstub.isPSmodule());
-              }
-              continue;
-            }
-
-            if (settings_.debugTracklet())
-              edm::LogVerbatim("Tracklet") << "Adding layer-layer pair in " << getName();
-            for (unsigned int isp = 0; isp < stubpairs_.size(); ++isp) {
-              if ((!settings_.enableTripletTables() || settings_.writeTripletTables()) ||
-                  (index < table_.size() && table_.at(index).count(isp))) {
-                if (settings_.writeMonitorData("Seeds")) {
-                  ofstream fout("seeds.txt", ofstream::app);
-                  fout << __FILE__ << ":" << __LINE__ << " " << name_ << "_" << iSector_ << " " << iSeed_ << endl;
-                  fout.close();
-                }
-                stubpairs_.at(isp)->addStubPair(firstvmstub, secondvmstub, index, getName());
-              }
-            }
-
-            countpass++;
-          }
-        }
-
-      } else if (layer1_ == 2 && layer2_ == 3) {
-        int lookupbits = firstvmstub.vmbits().value() & 1023;
-        int zdiffmax = (lookupbits >> 7);
-        int newbin = (lookupbits & 127);
-        int bin = newbin / 8;
-
-        int zbinfirst = newbin & 7;
-
-        int start = (bin >> 1);
-        int last = start + (bin & 1);
-
-        assert(last < 8);
-
-        if (settings_.debugTracklet()) {
-          edm::LogVerbatim("Tracklet") << "Will look in zbins " << start << " to " << last;
-        }
-        for (int ibin = start; ibin <= last; ibin++) {
-          for (unsigned int j = 0; j < secondvmstubs_->nVMStubsBinned(ibin); j++) {
-            if (settings_.debugTracklet()) {
-              edm::LogVerbatim("Tracklet") << "In " << getName() << " have second stub(2) ";
-            }
-
-            if (countall >= settings_.maxStep("TE"))
-              break;
-            countall++;
-
             const VMStubTE& secondvmstub = secondvmstubs_->getVMStubTEBinned(ibin, j);
 
             int zbin = (secondvmstub.vmbits().value() & 7);
