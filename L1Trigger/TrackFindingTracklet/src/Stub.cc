@@ -211,6 +211,10 @@ double Stub::rapprox() const {
     int lr = 1 << (8 - settings_.nrbitsstub(layer_.value()));
     return r_.value() * settings_.kr() * lr + settings_.rmean(layer_.value());
   }
+
+  float ret_val = r_.value() * settings_.kr();
+  std::string f_str = std::to_string(ret_val);
+  edm::LogPrint("Tracklet") << "Before fix the returned value was : " + f_str;
   return r_.value() * settings_.kr();
 }
 
