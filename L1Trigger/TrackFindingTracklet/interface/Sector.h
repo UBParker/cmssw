@@ -42,6 +42,7 @@ namespace trklet {
   class VMRouter;
   class TrackletEngine;
   class TrackletEngineDisplaced;
+  class TripletProcessor;
   class TripletEngine;
   class TrackletCalculator;
   class TrackletProcessor;
@@ -159,6 +160,7 @@ namespace trklet {
     std::vector<TrackletProcessor*> TP_;
     std::vector<TrackletCalculator*> TC_;
     std::vector<TrackletCalculatorDisplaced*> TCD_;
+    std::vector<TripletProcessor*> TRP_;
     std::vector<ProjectionRouter*> PR_;
     std::vector<MatchEngine*> ME_;
     std::vector<MatchCalculator*> MC_;

@@ -506,7 +506,7 @@ void TripletProcessor::execute() {
   }
 
 
-  if (settings_.writeMonitorData("TED")) { // left this TED since TripletPrcessor is TP same as TrackletProcessor
+  if (settings_.writeMonitorData("TRP")) { // left this TRP since TripletProcessor is TP same as TrackletProcessor
     globals_->ofstream("TripletPrcessors.txt") << getName() << " " << countalltriplets << " " << countpass << endl;
   }
 

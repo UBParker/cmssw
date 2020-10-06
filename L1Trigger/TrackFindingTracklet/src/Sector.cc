@@ -140,7 +140,9 @@ void Sector::addProc(string procType, string procName) {
     addProcToVec(TP_, new TrackletProcessor(procName, settings_, globals_, isector_), procName);
   } else if (procType == "TrackletCalculatorDisplaced:") {
     addProcToVec(TCD_, new TrackletCalculatorDisplaced(procName, settings_, globals_, isector_), procName);
-  } else if (procType == "ProjectionRouter:") {
+  } else if (procType == "TripletProcessor:") {
+    addProcToVec(TCD_, new TripletProcessor(procName, settings_, globals_, isector_), procName);
+ } else if (procType == "ProjectionRouter:") {
     addProcToVec(PR_, new ProjectionRouter(procName, settings_, globals_, isector_), procName);
   } else if (procType == "MatchEngine:") {
     addProcToVec(ME_, new MatchEngine(procName, settings_, globals_, isector_), procName);
@@ -354,6 +356,12 @@ void Sector::executeTC() {
 
 void Sector::executeTCD() {
   for (auto& i : TCD_) {
+    i->execute();
+  }
+}
+
+void Sector::executeTRP() {
+  for (auto& i : TRP_) {
     i->execute();
   }
 }
