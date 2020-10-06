@@ -525,6 +525,8 @@ void TrackletEventProcessor::printSummary() {
       << TCTimer_.avgtime() * 1000.0 << setw(20) << setprecision(3) << TCTimer_.tottime() << "\n"
       << "TrackletCalculatorDisplaced" << setw(10) << TCDTimer_.ntimes() << setw(20) << setprecision(3)
       << TCDTimer_.avgtime() * 1000.0 << setw(20) << setprecision(3) << TCDTimer_.tottime() << "\n"
+      << "TripletProcessor" << setw(10) << TRPTimer_.ntimes() << setw(20) << setprecision(3)
+      << TCDTimer_.avgtime() * 1000.0 << setw(20) << setprecision(3) << TRPTimer_.tottime() << "\n"
       << "ProjectionRouter      " << setw(10) << PRTimer_.ntimes() << setw(20) << setprecision(3)
       << PRTimer_.avgtime() * 1000.0 << setw(20) << setprecision(3) << PRTimer_.tottime() << "\n"
       << "MatchEngine           " << setw(10) << METimer_.ntimes() << setw(20) << setprecision(3)
