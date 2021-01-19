@@ -708,7 +708,7 @@ namespace trklet {
     // Options for chisq fit
     bool exactderivatives_{false};
     bool exactderivativesforfloating_{true};  //only for the floating point
-    bool useapprox_{true};          //use approximate postion based on integer representation for floating point
+    bool useapprox_{false};          //use approximate postion based on integer representation for floating point
     bool usephicritapprox_{false};  //use floating point approximate version of phicrit cut if true
 
     // Duplicate Removal
