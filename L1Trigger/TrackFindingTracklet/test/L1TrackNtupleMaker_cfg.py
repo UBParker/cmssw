@@ -60,8 +60,8 @@ process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(100))
 
 if GEOMETRY == "D49":
   # Read data from card files (defines getCMSdataFromCards()):
-  #from MCsamples.RelVal_1120.PU200_TTbar_14TeV_cfi import *
-  #inputMC = getCMSdataFromCards()
+  from MCsamples.RelVal_1120.PU0_SingleMuFlatPt2To100_cfi import *
+  inputMC = getCMSdataFromCards()
 
   # Or read .root files from directory on local computer:
   #dirName = "$myDir/whatever/"
@@ -72,14 +72,14 @@ if GEOMETRY == "D49":
   #inputMC=getCMSdata(dataName)
 
   # Or read specified .root file:
-  inputMC = ["/store/relval/CMSSW_11_2_0_pre5/RelValTTbar_14TeV/GEN-SIM-DIGI-RAW/PU25ns_110X_mcRun4_realistic_v3_2026D49PU200-v1/20000/FDFA00CE-FA93-0142-B187-99CBD4A43944.root"] 
+  #inputMC = ["/store/relval/CMSSW_11_2_0_pre5/RelValTTbar_14TeV/GEN-SIM-DIGI-RAW/PU25ns_110X_mcRun4_realistic_v3_2026D49PU200-v1/20000/FDFA00CE-FA93-0142-B187-99CBD4A43944.root"] 
 
 else:
   print "this is not a valid geometry!!!"    
     
 process.source = cms.Source("PoolSource", fileNames = cms.untracked.vstring(*inputMC))
 
-process.TFileService = cms.Service("TFileService", fileName = cms.string('TTbar_PU200_'+GEOMETRY+'.root'), closeFileFast = cms.untracked.bool(True))
+process.TFileService = cms.Service("TFileService", fileName = cms.string('SingleMuFlatPt2To100-CMSSW_11_2_0-PU0_ApproxFalse_'+GEOMETRY+'.root'), closeFileFast = cms.untracked.bool(True))
 process.Timing = cms.Service("Timing", summaryOnly = cms.untracked.bool(True))
 
 

@@ -55,7 +55,7 @@ void L1TrackNtuplePlot(TString type,
                        float TP_maxPt = 100.0,
                        float TP_maxEta = 2.4,
                        float TP_maxDxy = 1.0,
-                       float TP_maxD0 = 1.0,
+                       float TP_maxD0 = 2.0,
                        bool doDetailedPlots = true) {
   // type:              this is the name of the input file you want to process (minus ".root" extension)
   // type_dir:          this is the directory containing the input file you want to process. Note that this must end with a "/", as in "EventSets/"
@@ -460,7 +460,6 @@ void L1TrackNtuplePlot(TString type,
 
   unsigned int nBinsZ0Res = 100;
   double maxZ0Res = 4.0;
-
   // ----------------------------------------------
 
   const int nRANGE = 20;
@@ -638,29 +637,6 @@ void L1TrackNtuplePlot(TString type,
                                       0,
                                       maxPtRelRes);
   }
-
-  // _______________
-
-  // resolution vs d0                                                                                                                                        
-
-  const int nD0RANGE = 101;
-  TString d0range[nD0RANGE] = {"0.0", "0.0002",  "0.0004",  "0.0006",  "0.0008", "0.001",  "0.0012","0.0014",  "0.0016",  "0.0018", "0.002",  "0.0022","0.0024",  "0.0026",  "0.0028", "0.003",  "0.0032","0.0034",  "0.0036",  "0.0038", "0.004",  "0.0042","0.0044",  "0.0046",  "0.0048", "0.005",  "0.0052","0.0054",  "0.0056",  "0.0058", "0.006",  "0.0062","0.0064",  "0.0066",  "0.0068", "0.007",  "0.0072","0.0074",  "0.0076",  "0.0078", "0.008",  "0.0082","0.0084",  "0.0086",  "0.0088", "0.009",  "0.0092","0.0094",  "0.0096",  "0.0098", "0.01", "0.0102",  "0.0104",  "0.0106",  "0.0108", "0.011",  "0.0112","0.0114",  "0.0116",  "0.0118", "0.012",  "0.0122","0.0124",  "0.0126",  "0.0128", "0.013",  "0.0132","0.0134",  "0.0136",  "0.0138", "0.014",  "0.0142","0.0144",  "0.0146",  "0.0148", "0.015",  "0.0152","0.0154", "0.0156",  "0.0158", "0.016",  "0.0162","0.0164",  "0.0166",  "0.0168", "0.017",  "0.0172","0.0174",  "0.0176",  "0.0178", "0.018",  "0.0182","0.0184",  "0.0186",  "0.0188", "0.019",  "0.0192","0.0194",  "0.0196",  "0.0198", "0.02" };
-
-
-
-  TH1F* h_absResVsd0_pt[nD0RANGE];
-  TH1F* h_absResVsd0_phi[nD0RANGE];
-
-
-  for (int i = 0; i < nD0RANGE; i++) {
-    h_absResVsd0_pt[i] = new TH1F(
-				   "absResVsd0_pt_" + d0range[i], ";d_{0} residual (L1 - sim) [GeV]; L1 tracks / 0.1", nBinsPtRes, 0, maxPtRes);
-
-    h_absResVsd0_phi[i] = new TH1F(
-				  "absResVsd0_phi_" + d0range[i], ";d_{0} residual (L1 - sim) [GeV]; L1 tracks / 0.1", nBinsPhiRes, 0, maxPhiRes);
-
-  }
-
 
   // ----------------------------------------------------------------------------------------------------------------
   // chi2 histograms (last bin is an overflow bin)
@@ -2424,9 +2400,9 @@ void L1TrackNtuplePlot(TString type,
 
   TFile* fout;
   if (doLooseMatch)
-    fout = new TFile("output_looseMatch_useApproxFalse_" + type + treeName + ".root", "recreate");
+    fout = new TFile("output_looseMatch_ApproxFalse_" + type + treeName + ".root", "recreate");
   else
-    fout = new TFile(type_dir + "output_useApproxFalse_" + type + treeName + ".root", "recreate");
+    fout = new TFile(type_dir + "output_ApproxFalse_" + type + treeName + ".root", "recreate");
 
   // -------------------------------------------------------------------------------------------
   // draw and save plots
